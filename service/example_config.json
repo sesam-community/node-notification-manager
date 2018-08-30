@@ -1,0 +1,73 @@
+[{
+      "pipes": [
+        "*"
+      ],
+      "template": {
+        "description": "figure this out",
+        "extra_rule_info": {
+          "event_type": "pump-failed",
+          "parameter": "original_error_message",
+          "pattern": "*"
+        },
+        "name": "Any-error",
+        "recipients": [
+          {
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": [
+              "email"
+            ],
+            "type": "role"
+          }
+        ],
+        "type": "pattern_match"
+      }
+    },
+    {
+      "pipes": [
+        "*geonis*"
+      ],
+      "template": {
+        "description": "figure this out",
+        "extra_rule_info": {
+          "event_type": "pump-failed",
+          "parameter": "original_error_message",
+          "pattern": "*"
+        },
+        "name": "Any-error Endpoints",
+        "recipients": [
+          {
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": [
+              "email"
+            ],
+            "type": "role"
+          }
+        ],
+        "type": "pattern_match"
+      }
+    },
+      {
+      "pipes": [
+        "*geonis*"
+      ],
+      "template": {
+        "description": "oh shiiiit",
+        "extra_rule_info": {
+          "event_type": "pump-failed",
+          "parameter": "original_error_message",
+          "pattern": "*"
+        },
+        "name": "NewRule",
+        "recipients": [
+          {
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": [
+              "email"
+            ],
+            "type": "role"
+          }
+        ],
+        "type": "pattern_match"
+      }
+    }
+]
