@@ -12,8 +12,8 @@ from portal import PortalConnection
 
 
 # define required and optional environment variables
-required_env_vars = ["node_endpoint", "jwt"]
-optional_env_vars = ["loglevel", "rules", "interval"]
+required_env_vars = ["node_endpoint", "jwt", "rules"]
+optional_env_vars = ["loglevel", "interval"]
 
 
 # Define logger
@@ -48,15 +48,15 @@ if len(missing_env_vars) != 0:
     logger.error(f"Missing the following required environment variable(s) {missing_env_vars}")
     sys.exit(1)
 
-# try:
-#     #rules = json.loads(config.rules)
-# except ValueError:
-#     logger.error("The 'rules' environment variable doesn't cotain valid Json.")
-#     sys.exit(1)
+try:
+    rules = json.loads(config.rules)
+except ValueError:
+    logger.error("The 'rules' environment variable doesn't contain valid Json.")
+    sys.exit(1)
 
-with open('example_config.json', 'r') as f:
-    raw_example = f.read()
-    rules = json.loads(raw_example)
+# with open('example_config.json', 'r') as f:
+#     raw_example = f.read()
+#     rules = json.loads(raw_example)
 
 # Todo: Validate all rules. Should contain: 'template', 'pipes'
 
