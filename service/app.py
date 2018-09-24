@@ -13,7 +13,7 @@ from portal import PortalConnection
 
 # define required and optional environment variables
 required_env_vars = ["node_endpoint", "jwt", "rules"]
-optional_env_vars = ["loglevel", "local_test", "interval", "notification_dataset"]
+optional_env_vars = ["loglevel", "local_test", "interval", "notification_dataset", "microservice_logging"]
 
 
 def str_to_bool(string_input):
@@ -40,7 +40,11 @@ for env_var in optional_env_vars:
         setattr(config, env_var, value)
 
 # Define logger
-format_string = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+if hasattr(config, "microservice_logging"):
+    if str_to_bool(config.sesam_microservice_logging):
+        format_string = ' - %(name)s - %(levelname)s - %(message)s'
+else:
+    format_string = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logger = logging.getLogger('NotificationManager')
 stdout_handler = logging.StreamHandler()
 stdout_handler.setFormatter(logging.Formatter(format_string))
