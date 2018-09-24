@@ -205,7 +205,7 @@ while True:
 
     sleep_interval = config.interval if hasattr(config, "interval") else 3600
     logger.info(f"Going to sleep. Will check again in {sleep_interval} seconds")
-    sleep(sleep_interval)
+    sleep(int(sleep_interval))
 
 
 
