@@ -41,7 +41,7 @@ for env_var in optional_env_vars:
 
 # Define logger
 if hasattr(config, "microservice_logging"):
-    if str_to_bool(config.sesam_microservice_logging):
+    if str_to_bool(config.microservice_logging):
         format_string = ' - %(name)s - %(levelname)s - %(message)s'
 else:
     format_string = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
