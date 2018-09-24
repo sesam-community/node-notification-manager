@@ -20,6 +20,8 @@ Prerequisites:
       "jwt": "$SECRET(notification_manager_jwt)",
       "node_endpoint": "https://123456.sesam.cloud/api",
       "interval": "1800",
+      "notification_dataset": "manual-notification-notifier",
+      "microservice_logging": true,
       "rules": [
         {
           "pipes": [
