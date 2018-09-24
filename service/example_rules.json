@@ -1,0 +1,84 @@
+[{
+        "pipes": ["*"],
+        "template": {
+          "type": "pattern_match",
+          "name": "any-error",
+          "description": "notification for any error/failure",
+          "extra_rule_info": {
+            "event_type": "pump-failed",
+            "parameter": "original_error_message",
+            "pattern": "*"
+          },
+          "recipients": [{
+            "type": "role",
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": ["email"]
+          }]
+        }
+      }, {
+        "pipes": ["*freshdesk-endpoint"],
+        "template": {
+          "type": "pattern_match",
+          "name": "Freshdesk api rate limit exceeded",
+          "description": "Notify if we exceed the api rate limit per hour",
+          "extra_rule_info": {
+            "event_type": "pump-failed",
+            "parameter": "original_error_message",
+            "pattern": "You have exceeded the limit of requests per hour"
+          },
+          "recipients": [{
+            "type": "role",
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": ["email"]
+          }]
+        }
+      }, {
+        "pipes": ["tilknytning-request-workorder-*"],
+        "template": {
+          "type": "pump_completed_value_too_low_over_time",
+          "name": "at-least-1-change-in-last-3-days",
+          "description": "At least 1 change must happen in 3 days-considering weekends",
+          "extra_rule_info": {
+            "interval": 259200,
+            "limit": 1,
+            "parameter": "changes_last_run"
+          },
+          "recipients": [{
+            "type": "role",
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": ["email"]
+          }]
+        }
+      }, {
+        "pipes": ["cab-*", "contiki-*", "elsmart-*", "fasit-f99*", "fd-*", "freshdesk-*", "generis-*", "geonis-*", "hafslund-sharepoint-*", "hes-*", "ifs-*", "pcom-*", "puzzel-*", "quant-*", "spectrum-*", "wms-*", "zeekit-*"],
+        "template": {
+          "type": "pump_completed_value_too_high",
+          "name": "read-error-gt-50",
+          "description": "read-error encountered",
+          "extra_rule_info": {
+            "limit": 50,
+            "parameter": "read_errors_last_run"
+          },
+          "recipients": [{
+            "type": "role",
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": ["email"]
+          }]
+        }
+      }, {
+        "pipes": ["*-endpoint"],
+        "template": {
+          "type": "pump_completed_value_too_high",
+          "name": "write-error-gt-50",
+          "description": "write-error encountered2",
+          "extra_rule_info": {
+            "limit": 50,
+            "parameter": "write_errors_last_run"
+          },
+          "recipients": [{
+            "type": "role",
+            "id": "<SUBSCRIPTION_ID>_notification-recipient",
+            "methods": ["email"]
+          }]
+        }
+}]
