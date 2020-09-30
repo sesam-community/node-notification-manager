@@ -1,7 +1,14 @@
 # Sesam Node Notification Manager
 
-#### Sesam Node microservice to dynamically create and update notification settings for all pipes on a given node
+#### Sesam Node microservice to dynamically create and update notification settings for pipes on a given node
 
+### :warning: DISCLAIMER! This service will add additional charges to your invoice. The service will create notfication rules for any pipes that match the given pattern. 
+
+The rules expect a wildcard pattern to match pipe ids:
+```
+"pipes": ["*-endpoint"],
+```
+See full examples in the example config below.
 
 ### Example config
 
